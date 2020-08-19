@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-08-18 16:51:44
- * @LastEditTime: 2020-08-18 17:05:29
+ * @LastEditTime: 2020-08-19 10:52:42
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \theme_intl\lib\intl\currentLocale.dart
@@ -17,6 +17,6 @@ class CurrentLocale with ChangeNotifier
     void setLocale(locale) 
     {
         _locale = locale;   
-        notifyListeners();         
+        notifyListeners();//通知依赖的Widget
     }
 }

@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-08-14 09:21:08
- * @LastEditTime: 2020-08-18 17:12:39
+ * @LastEditTime: 2020-08-19 11:23:57
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \scangun\lib\pages\set.dart
@@ -16,7 +16,6 @@ class Set extends StatefulWidget {
   @override
   _SetState createState() => _SetState();
 }
-GlobalKey<_FreeLocalizations> freeLocalizationStateKey = new GlobalKey<_FreeLocalizations>(); 
 class _SetState extends State<Set> {
   @override
   Widget build(BuildContext context) {
@@ -167,34 +166,3 @@ class _SetState extends State<Set> {
 }
 
 
-class FreeLocalizations extends StatefulWidget{
-
-  final Widget child;
-
-  FreeLocalizations({Key key,this.child}):super(key:key);
-
-  @override
-  State<FreeLocalizations> createState() {
-    return new _FreeLocalizations();
-  }
-}
-
-class _FreeLocalizations extends State<FreeLocalizations>{
-
-  Locale _locale = const Locale('zh','CH');
-
-  changeLocale(Locale locale){
-    setState((){
-      _locale = locale;
-    });
-  }
-  
-  @override
-  Widget build(BuildContext context) {
-    return new Localizations.override(
-      context: context,
-      locale: _locale,
-      child: widget.child,
-    );
-  }
-}
