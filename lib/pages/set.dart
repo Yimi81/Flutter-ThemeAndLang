@@ -147,7 +147,7 @@ class _SetState extends State<Set> {
                     if (i != null) {
                       if(i==1)
                       {
-                               Provider.of<CurrentLocale>(context,listen: false).setLocale(const Locale('zh',"CH"));
+                               Provider.of<CurrentLocale>(context,listen: false).setLocale(const Locale('zh',"CH"));//更改语言
                       }
                       else 
                       {

@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-08-17 16:06:03
- * @LastEditTime: 2020-08-18 14:18:31
+ * @LastEditTime: 2020-08-19 17:11:56
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \theme_intl\lib\pages\home.dart
@@ -20,7 +20,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home>  with SingleTickerProviderStateMixin{
 
   TabController _tabController;
-  List tabs = ["设置","热门","体育","网络"];
+  List tabs =["设置","热门","体育","网络"];
 
   @override
   void initState()
@@ -30,6 +30,7 @@ class _HomeState extends State<Home>  with SingleTickerProviderStateMixin{
   }
   @override
   Widget build(BuildContext context) {
+     tabs =  DemoLocalizations.of(context).tabsSet;
      return Scaffold(
       //AppBar相关属性
       appBar: AppBar(
@@ -42,7 +43,7 @@ class _HomeState extends State<Home>  with SingleTickerProviderStateMixin{
           ],
           bottom: TabBar(
               controller: _tabController,
-              tabs:tabs.map((e) => Tab(text: e,)).toList()
+              tabs:tabs.map((e) => Tab(text: e)).toList()
           ),
       ),
       //Scaffold常用属性
@@ -76,7 +77,7 @@ class _HomeState extends State<Home>  with SingleTickerProviderStateMixin{
         children:[
               Center(
               child: GestureDetector(
-                child: Text("点击前往设置",textScaleFactor: 2),
+                child: Text(DemoLocalizations.of(context).contentSet,textScaleFactor: 2),
                 onTap: ()
                 {
                   Navigator.of(context).pushNamed('/set');

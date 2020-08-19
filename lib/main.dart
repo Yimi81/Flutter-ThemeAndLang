@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-07-29 15:10:48
- * @LastEditTime: 2020-08-18 17:06:25
+ * @LastEditTime: 2020-08-19 13:22:15
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \flutter-Study\demo06\lib\main.dart
@@ -21,11 +21,11 @@ import 'intl/delegate.dart';
 import 'intl/localizations.dart';
 import 'provider/currentLocale.dart';
 void main() {
-  //2、创建顶层共享数据
+  //2、注册顶层共享数据
   return runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context)=>ThemeModel()),
+        ChangeNotifierProvider(create: (context)=>ThemeModel()),//此是主题状态注册
         ChangeNotifierProvider(create: (context)=>CurrentLocale())
       ],
       child: MyApp(),
@@ -37,9 +37,9 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    //3、状态组件绑定,将主题状态与组件绑定
-        return Consumer2<ThemeModel,CurrentLocale>(
-          builder: (context,themeModel,currentLocale,child)
+    //3、状态组件绑定,将语言状态与组件绑定
+        return Consumer<CurrentLocale>(   //语言设置1：语言状态获取方式，暂时只看CurrentLocale
+          builder: (context,currentLocale,child)
           {
             return MaterialApp(
                localizationsDelegates: [
@@ -48,18 +48,18 @@ class MyApp extends StatelessWidget {
                 GlobalWidgetsLocalizations.delegate,
                 DemoLocalizationsDelegate.delegate
               ],
-              locale: currentLocale.value,
+              locale: currentLocale.value,//语言设置2
                supportedLocales: [
                    const Locale('zh', 'CN'), // 中文简体
                    const Locale('en', 'US'), // 美国英语              
                 //其它Locales
               ],
-              theme: AppTheme.getThemeData(themeModel.value),
+         
               onGenerateTitle: (context){                                              
                 return DemoLocalizations.of(context).taskTitle;
               },
-              initialRoute: welcomeRoute,
-              routes: routes   
+              initialRoute: welcomeRoute,//欢迎页
+              routes: routes   //注册路由
             );
           },
         );
